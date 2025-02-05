@@ -5,7 +5,8 @@
     "lib": ["ESNext", "DOM", "DOM.Iterable"],
 
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "#/*": ["./types/*"]
     },
     "types": [
       "vite/client",

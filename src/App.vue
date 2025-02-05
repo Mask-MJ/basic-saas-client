@@ -1,27 +1,34 @@
 <script setup lang="ts">
-import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
+// 挂载naive组件的方法至window, 以便在路由钩子函数和请求函数里面调用
+function registerNaiveTools() {
+  window.$loadingBar = useLoadingBar()
+  window.$dialog = useDialog()
+  window.$message = useMessage()
+  window.$notification = useNotification()
+}
+
+const NaiveProviderContent = defineComponent({
+  name: 'NaiveProviderContent',
+  setup() {
+    registerNaiveTools()
+  },
+  render() {
+    return h('div')
+  },
+})
 </script>
 
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125">
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-
-      <nav>
-        <RouterLink to="/">
-          Home
-        </RouterLink>
-        <RouterLink to="/about">
-          About
-        </RouterLink>
-      </nav>
-    </div>
-  </header>
-
-  <RouterView />
+  <n-loading-bar-provider>
+    <n-dialog-provider>
+      <n-notification-provider>
+        <n-message-provider>
+          <slot />
+          <NaiveProviderContent />
+        </n-message-provider>
+      </n-notification-provider>
+    </n-dialog-provider>
+  </n-loading-bar-provider>
 </template>
 
 <style scoped>
