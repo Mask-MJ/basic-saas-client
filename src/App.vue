@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { login } from '@/api/system/user'
+
 // 挂载naive组件的方法至window, 以便在路由钩子函数和请求函数里面调用
 function registerNaiveTools() {
   window.$loadingBar = useLoadingBar()
@@ -15,6 +17,11 @@ const NaiveProviderContent = defineComponent({
   render() {
     return h('div')
   },
+})
+
+onMounted(async () => {
+  const data = await login({ account: 'admin', password: '123456' })
+  console.log(data)
 })
 </script>
 

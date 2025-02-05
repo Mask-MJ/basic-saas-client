@@ -1,0 +1,5 @@
+apis:
+  basic:
+    root: http://basic.data3oil.com/doc-json
+    x-openapi-ts:
+      output: ./types/openapi.d.ts

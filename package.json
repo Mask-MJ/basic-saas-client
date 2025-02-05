@@ -14,14 +14,17 @@
     "lint": "eslint . --fix",
     "lint:lint-staged": "vue-tsc && lint-staged && cspell lint **/*.ts **/*.vue --no-progress",
     "prepare": "husky",
-    "commit": "git-cz"
+    "commit": "git-cz",
+    "openapi": "openapi-typescript"
   },
   "dependencies": {
     "@ctrl/tinycolor": "^4.1.0",
     "@unhead/vue": "^1.11.18",
     "@vueuse/core": "^12.5.0",
     "lodash-es": "^4.17.21",
+    "naive-ui": "^2.41.0",
     "nprogress": "^0.2.0",
+    "openapi-fetch": "^0.13.4",
     "pinia": "^2.3.1",
     "pinia-plugin-persistedstate": "^4.2.0",
     "theme-colors": "^0.1.0",

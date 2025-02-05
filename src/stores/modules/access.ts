@@ -1,8 +1,10 @@
+import type { components } from '#/openapi'
+
 import type { RouteRecordRaw } from 'vue-router'
 
 import type { MenuRecordRaw } from '../types/menu'
-
 import type { UserInfo } from './user'
+import { login } from '@/api/system/user'
 import { DEFAULT_HOME_PATH } from '@/config/constants'
 import { $t } from '@/locales'
 import { acceptHMRUpdate, defineStore } from 'pinia'
@@ -104,19 +106,19 @@ export const useAccessStore = defineStore('core-access', {
      * Asynchronously handle the login process
      * @param params 登录表单数据
      */
-    async authLogin(params: Record<string, any>, onSuccess?: () => Promise<void> | void) {
-      const userStore = useUserStore()
+    async authLogin(params: components['schemas']['SignInDto'], onSuccess?: () => Promise<void> | void) {
+      // const userStore = useUserStore()
       const router = useRouter()
       // 异步处理用户登录操作并获取 accessToken
       let userInfo: null | UserInfo = null
       try {
         this.loginLoading = true
-        const { accessToken } = await loginApi(params)
+        const { data } = await login(params)
 
         // 如果成功获取到 accessToken
-        if (accessToken) {
+        if (data.accessToken) {
           // 将 accessToken 存储到 accessStore 中
-          this.setAccessToken(accessToken)
+          this.setAccessToken(data.accessToken)
 
           // 获取用户信息并存储到 accessStore 中
           const [fetchUserInfoResult, accessCodes] = await Promise.all([
