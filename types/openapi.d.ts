@@ -1207,7 +1207,7 @@ export interface components {
       avatar: string
       email: string
       phoneNumber: string
-      role: components['schemas']['RoleEntity'][]
+      roles: components['schemas']['RoleEntity'][]
       sex: number
       status: boolean
       createBy: string

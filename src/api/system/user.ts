@@ -13,7 +13,7 @@ export function login(body: components['schemas']['SignInDto']) {
   return client.POST('/api/authentication/sign-in', { body })
 }
 // 获取自身用户信息
-export const getSelfInfo = () => client.GET('/api/system/user/info')
+export const getUserInfoApi = () => client.GET('/api/system/user/info')
 
 // 获取用户列表
 export function getUserList(query?: SearchParams) {

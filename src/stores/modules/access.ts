@@ -4,7 +4,7 @@ import type { RouteRecordRaw } from 'vue-router'
 
 import type { MenuRecordRaw } from '../types/menu'
 import type { UserInfo } from './user'
-import { login } from '@/api/system/user'
+import { getUserInfoApi, login } from '@/api/system/user'
 import { DEFAULT_HOME_PATH } from '@/config/constants'
 import { $t } from '@/locales'
 import { acceptHMRUpdate, defineStore } from 'pinia'
@@ -114,9 +114,8 @@ export const useAccessStore = defineStore('core-access', {
       try {
         this.loginLoading = true
         const { data } = await login(params)
-
         // 如果成功获取到 accessToken
-        if (data.accessToken) {
+        if (data && data.accessToken) {
           // 将 accessToken 存储到 accessStore 中
           this.setAccessToken(data.accessToken)
 
@@ -140,10 +139,10 @@ export const useAccessStore = defineStore('core-access', {
               : await router.push(userInfo.homePath || DEFAULT_HOME_PATH)
           }
 
-          if (userInfo?.realName) {
+          if (userInfo?.nickname) {
             window.$notification.success({
               content: $t('authentication.loginSuccess'),
-              description: `${$t('authentication.loginSuccessDesc')}:${userInfo?.realName}`,
+              description: `${$t('authentication.loginSuccessDesc')}:${userInfo?.nickname}`,
               duration: 3000,
             })
           }

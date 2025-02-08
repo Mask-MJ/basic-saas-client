@@ -16,12 +16,10 @@ const authMiddleware: Middleware = {
 
   async onResponse({ response }) {
     const data = await response.clone().json()
-    if (data.statusCode === 200) {
-      return new Response(JSON.stringify(data.data))
+    if (!response.status.toString().startsWith('2')) {
+      window.$message.error(data.message)
     }
-    else {
-      return window.$message.error(data.message)
-    }
+    return new Response(JSON.stringify(data))
   },
 }
 

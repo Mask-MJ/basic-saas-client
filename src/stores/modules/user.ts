@@ -1,27 +1,7 @@
+import type { components } from '#/openapi'
 import { acceptHMRUpdate, defineStore } from 'pinia'
 
-interface BasicUserInfo {
-  /**
-   * 头像
-   */
-  avatar: string
-  /**
-   * 用户昵称
-   */
-  realName: string
-  /**
-   * 用户角色
-   */
-  roles?: string[]
-  /**
-   * 用户id
-   */
-  id: number
-  /**
-   * 用户名
-   */
-  username: string
-}
+export type BasicUserInfo = components['schemas']['UserEntity']
 
 /** 用户信息 */
 export interface UserInfo extends BasicUserInfo {
@@ -66,7 +46,7 @@ export const useUserStore = defineStore('user-store', {
       // 设置用户信息
       this.userInfo = userInfo
       // 设置角色信息
-      const roles = userInfo?.roles ?? []
+      const roles = userInfo?.roles.map(role => role.name) ?? []
       this.setUserRoles(roles)
     },
     setUserRoles(roles: string[]) {

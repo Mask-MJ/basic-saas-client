@@ -18,11 +18,6 @@ const NaiveProviderContent = defineComponent({
     return h('div')
   },
 })
-
-onMounted(async () => {
-  const data = await login({ account: 'admin', password: '123456' })
-  console.log(data)
-})
 </script>
 
 <template>

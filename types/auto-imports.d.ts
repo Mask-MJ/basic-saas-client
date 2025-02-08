@@ -318,7 +318,7 @@ declare global {
   export type { Component, ComponentPublicInstance, ComputedRef, DirectiveBinding, ExtractDefaultPropTypes, ExtractPropTypes, ExtractPublicPropTypes, InjectionKey, PropType, Ref, MaybeRef, MaybeRefOrGetter, VNode, WritableComputedRef } from 'vue'
   import('vue')
   // @ts-ignore
-  export type { UserInfo } from '../src/stores/modules/user'
+  export type { BasicUserInfo, UserInfo } from '../src/stores/modules/user'
   import('../src/stores/modules/user')
 }
 
