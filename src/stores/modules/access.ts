@@ -107,7 +107,7 @@ export const useAccessStore = defineStore('core-access', {
      * @param params 登录表单数据
      */
     async authLogin(params: components['schemas']['SignInDto'], onSuccess?: () => Promise<void> | void) {
-      // const userStore = useUserStore()
+      const userStore = useUserStore()
       const router = useRouter()
       // 异步处理用户登录操作并获取 accessToken
       let userInfo: null | UserInfo = null
@@ -136,7 +136,7 @@ export const useAccessStore = defineStore('core-access', {
           else {
             onSuccess
               ? await onSuccess?.()
-              : await router.push(userInfo.homePath || DEFAULT_HOME_PATH)
+              : await router.push(userInfo?.homePath || DEFAULT_HOME_PATH)
           }
 
           if (userInfo?.nickname) {
@@ -158,10 +158,13 @@ export const useAccessStore = defineStore('core-access', {
     },
     async  fetchUserInfo() {
       const userStore = useUserStore()
-      let userInfo: null | UserInfo = null
-      userInfo = await getUserInfoApi()
-      userStore.setUserInfo(userInfo)
-      return userInfo
+      // let userInfo: null | UserInfo = null
+      const { data } = await getUserInfoApi()
+      if (!data) {
+        return null
+      }
+      userStore.setUserInfo(data)
+      return data
     },
   },
   persist: {

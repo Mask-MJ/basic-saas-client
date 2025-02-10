@@ -12,19 +12,23 @@ describe('useUserStore', () => {
   it('returns correct user info', () => {
     const store = useUserStore()
     const userInfo: UserInfo = {
-      name: 'test',
       isAdmin: true,
-      account: 'admin',
+      username: 'admin',
       email: '',
       phoneNumber: '',
-      roles: [{ id: 1, name: 'admin', value: 'admin', sort: 1 }],
+      roles: [],
       id: 1,
       avatar: 'test',
-      username: 'test',
       nickname: 'test',
       sex: 1,
-      status: true,
+      status: 1,
       remark: '',
+      desc: '',
+      homePath: '',
+      token: '',
+      createBy: '',
+      createdAt: '',
+      updatedAt: '',
     }
     store.setUserInfo(userInfo)
     expect(store.userInfo).toEqual(userInfo)
@@ -33,7 +37,7 @@ describe('useUserStore', () => {
   // 测试重置用户信息时的行为
   it('reset user info', () => {
     const store = useUserStore()
-    const userInfo = { name: 'test', roles: ['admin'], id: 1, avatar: 'test', username: 'test', nickname: 'test' }
+    const userInfo = { isAdmin: true, username: 'admin', email: '', phoneNumber: '', roles: [], id: 1, avatar: 'test', nickname: 'test', sex: 1, status: 1, remark: '', desc: '', homePath: '', token: '', createBy: '', createdAt: '', updatedAt: '' }
     store.setUserInfo(userInfo)
     expect(store.userInfo).toBeNull()
     expect(store.userRoles.length).toBeGreaterThan(0)
