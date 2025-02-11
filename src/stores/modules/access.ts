@@ -4,7 +4,7 @@ import type { RouteRecordRaw } from 'vue-router'
 
 import type { MenuRecordRaw } from '../types/menu'
 import type { UserInfo } from './user'
-import { getUserInfoApi, login } from '@/api/system/user'
+import { getAccessCodesApi, getUserInfoApi, login } from '@/api/system/user'
 import { DEFAULT_HOME_PATH } from '@/config/constants'
 import { $t } from '@/locales'
 import { acceptHMRUpdate, defineStore } from 'pinia'
@@ -107,7 +107,6 @@ export const useAccessStore = defineStore('core-access', {
      * @param params 登录表单数据
      */
     async authLogin(params: components['schemas']['SignInDto'], onSuccess?: () => Promise<void> | void) {
-      const userStore = useUserStore()
       const router = useRouter()
       // 异步处理用户登录操作并获取 accessToken
       let userInfo: null | UserInfo = null
@@ -127,7 +126,6 @@ export const useAccessStore = defineStore('core-access', {
 
           userInfo = fetchUserInfoResult
 
-          userStore.setUserInfo(userInfo)
           this.setAccessCodes(accessCodes)
 
           if (this.loginExpired) {
@@ -156,15 +154,11 @@ export const useAccessStore = defineStore('core-access', {
         userInfo,
       }
     },
-    async  fetchUserInfo() {
+    async fetchUserInfo() {
       const userStore = useUserStore()
-      // let userInfo: null | UserInfo = null
       const { data } = await getUserInfoApi()
-      if (!data) {
-        return null
-      }
-      userStore.setUserInfo(data)
-      return data
+      data && userStore.setUserInfo(data)
+      return data || null
     },
   },
   persist: {

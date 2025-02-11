@@ -15,6 +15,9 @@ export function login(body: components['schemas']['SignInDto']) {
 // 获取自身用户信息
 export const getUserInfoApi = () => client.GET('/api/system/user/info')
 
+// 获取用户权限码
+export const getAccessCodesApi = () => client.GET('/api/system/user/code')
+
 // 获取用户列表
 export function getUserList(query?: SearchParams) {
   return client.GET('/api/system/user', { params: { query } })
