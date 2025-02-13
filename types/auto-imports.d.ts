@@ -317,9 +317,6 @@ declare global {
   // @ts-ignore
   export type { Component, ComponentPublicInstance, ComputedRef, DirectiveBinding, ExtractDefaultPropTypes, ExtractPropTypes, ExtractPublicPropTypes, InjectionKey, PropType, Ref, MaybeRef, MaybeRefOrGetter, VNode, WritableComputedRef } from 'vue'
   import('vue')
-  // @ts-ignore
-  export type { BasicUserInfo, UserInfo } from '../src/stores/modules/user'
-  import('../src/stores/modules/user')
 }
 
 // for vue template auto import
@@ -433,7 +430,6 @@ declare module 'vue' {
     readonly unref: UnwrapRef<typeof import('vue')['unref']>
     readonly unrefElement: UnwrapRef<typeof import('@vueuse/core')['unrefElement']>
     readonly until: UnwrapRef<typeof import('@vueuse/core')['until']>
-    readonly useAccessStore: UnwrapRef<typeof import('../src/stores/modules/access')['useAccessStore']>
     readonly useActiveElement: UnwrapRef<typeof import('@vueuse/core')['useActiveElement']>
     readonly useAnimate: UnwrapRef<typeof import('@vueuse/core')['useAnimate']>
     readonly useArrayDifference: UnwrapRef<typeof import('@vueuse/core')['useArrayDifference']>

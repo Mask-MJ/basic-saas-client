@@ -3,13 +3,13 @@ import { client } from '@/utils'
 
 export type UserInfo = components['schemas']['UserEntity']
 export type SearchParams = operations['UserController_findAll']['parameters']['query']
-
+export type SignInParams = components['schemas']['SignInDto']
 // 注册
 export function register(body: components['schemas']['SignUpDto']) {
   return client.POST('/api/authentication/sign-up', { body })
 }
 // 登录
-export function login(body: components['schemas']['SignInDto']) {
+export function login(body: SignInParams) {
   return client.POST('/api/authentication/sign-in', { body })
 }
 // 获取自身用户信息

@@ -1,4 +1,4 @@
-import type { UserInfo } from './user'
+import type { UserInfo } from '@/api/system/user'
 import { createPinia, setActivePinia } from 'pinia'
 import { beforeEach, describe, expect, it } from 'vitest'
 
@@ -23,9 +23,6 @@ describe('useUserStore', () => {
       sex: 1,
       status: 1,
       remark: '',
-      desc: '',
-      homePath: '',
-      token: '',
       createBy: '',
       createdAt: '',
       updatedAt: '',

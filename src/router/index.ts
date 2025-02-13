@@ -2,8 +2,8 @@ import type { App } from 'vue'
 
 import { setupLayouts } from 'virtual:generated-layouts'
 import { createRouter, createWebHistory } from 'vue-router'
-// import { setupRouterGuard } from './permissionGuard'
 import { routes } from 'vue-router/auto-routes'
+import { setupCommonGuard } from './permissionGuard'
 
 export const router = createRouter({
   history: createWebHistory(),
@@ -14,5 +14,5 @@ export const router = createRouter({
 
 export function initRouter(app: App) {
   app.use(router)
-  // setupRouterGuard(router)
+  setupCommonGuard(router)
 }

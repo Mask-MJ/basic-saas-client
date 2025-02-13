@@ -21,6 +21,7 @@
     "@ctrl/tinycolor": "^4.1.0",
     "@unhead/vue": "^1.11.18",
     "@vueuse/core": "^12.5.0",
+    "@vueuse/integrations": "^12.5.0",
     "lodash-es": "^4.17.21",
     "naive-ui": "^2.41.0",
     "nprogress": "^0.2.0",

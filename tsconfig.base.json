@@ -4,6 +4,7 @@
   "compilerOptions": {
     "composite": false,
     "target": "ESNext",
+    "lib": ["ESNext"],
 
     "moduleDetection": "force",
     "experimentalDecorators": true,
